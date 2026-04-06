@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Моделювання кінематики прямолінійного руху</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Моделювання кінематики прямолінійного руху</h1>
+      <p class="subtitle">Розрахунок траєкторії матеріальної точки за заданими параметрами</p>
+    </header>
+
+    <main class="layout">
+      <section class="panel form-panel">
+        <h2>Вхідні параметри</h2>
+        <form id="motionForm">
+          <div class="grid">
+            <label>
+              <span>x₀, м</span>
+              <input type="number" id="x0" value="0" step="0.1" required />
+            </label>
+            <label>
+              <span>y₀, м</span>
+              <input type="number" id="y0" value="0" step="0.1" required />
+            </label>
+            <label>
+              <span>Кут, °</span>
+              <input type="number" id="angle" value="45" step="0.1" required />
+            </label>
+            <label>
+              <span>Початкова швидкість, м/с</span>
+              <input type="number" id="speed" value="20" step="0.1" required />
+            </label>
+            <label>
+              <span>Прискорення, м/с²</span>
+              <input type="number" id="acceleration" value="9.8" step="0.1" required />
+            </label>
+            <label>
+              <span>Крок часу, с</span>
+              <input type="number" id="timeStep" value="0.05" min="0.01" step="0.01" required />
+            </label>
+          </div>
+          <div class="actions">
+            <button type="submit">Побудувати траєкторію</button>
+            <button type="button" id="clearBtn" class="secondary">Очистити</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel chart-panel">
+        <h2>Графік руху</h2>
+        <canvas id="chartCanvas" width="760" height="420"></canvas>
+        <p id="status" class="status">Введіть параметри та натисніть кнопку побудови.</p>
+      </section>
+    </main>
+
+    <section class="panel results-panel">
+      <h2>Результати розрахунку</h2>
+      <div class="metrics" id="metrics">
+        <div class="metric"><strong>Час польоту:</strong> <span id="flightTime">—</span></div>
+        <div class="metric"><strong>Дальність:</strong> <span id="rangeValue">—</span></div>
+        <div class="metric"><strong>Максимальна висота:</strong> <span id="maxHeight">—</span></div>
+        <div class="metric"><strong>Кількість точок:</strong> <span id="pointsCount">—</span></div>
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>№</th>
+              <th>t, c</th>
+              <th>x, м</th>
+              <th>y, м</th>
+            </tr>
+          </thead>
+          <tbody id="resultTableBody">
+            <tr>
+              <td colspan="4" class="empty">Немає даних для відображення</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
